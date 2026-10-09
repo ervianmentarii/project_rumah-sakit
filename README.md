@@ -26,23 +26,21 @@ flowchart TD
     D1 -->|Buat E-Resep| D2(Update Status: Selesai)
     end
     
-    D2 --> E{Pasien Menuju}
+    D2 --> E[Kasir]
     
-    E -->|Menebus Obat| F[Apoteker]
-    E -->|Bayar Tagihan| G[Kasir]
+    subgraph 4. Pembayaran (Kasir)
+    E -->|Tarik Data Tindakan & Obat| E1(Pilih Metode: Tunai/QRIS)
+    E1 -->|Cetak Kwitansi| E2(Transaksi Lunas)
+    end
     
-    subgraph 4a. Farmasi / Apotek
-    F -->|Terima E-Resep Real-time| F1(Proses Obat)
+    E2 --> F[Apoteker]
+    
+    subgraph 5. Farmasi / Apotek
+    F -->|Terima Bukti Lunas & E-Resep| F1(Proses Obat)
     F1 -->|Serahkan Obat| F2(Stok Otomatis Berkurang)
     end
     
-    subgraph 4b. Pembayaran
-    G -->|Tarik Data Tindakan & Obat| G1(Pilih Metode: Tunai/QRIS)
-    G1 -->|Cetak Kwitansi| G2(Transaksi Lunas)
-    end
-    
-    F2 --> H([Pasien Pulang])
-    G2 --> H
+    F2 --> G([Pasien Pulang])
 ```
 
 ## ✨ Fitur Berdasarkan Peran (Role)
