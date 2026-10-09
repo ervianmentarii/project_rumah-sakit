@@ -28,14 +28,14 @@ flowchart TD
     
     D2 --> E[Kasir]
     
-    subgraph 4. Pembayaran (Kasir)
+    subgraph 4. Pembayaran
     E -->|Tarik Data Tindakan & Obat| E1(Pilih Metode: Tunai/QRIS)
     E1 -->|Cetak Kwitansi| E2(Transaksi Lunas)
     end
     
     E2 --> F[Apoteker]
     
-    subgraph 5. Farmasi / Apotek
+    subgraph 5. Farmasi
     F -->|Terima Bukti Lunas & E-Resep| F1(Proses Obat)
     F1 -->|Serahkan Obat| F2(Stok Otomatis Berkurang)
     end
